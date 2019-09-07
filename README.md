@@ -44,7 +44,8 @@ Create the `.stylelintrc.json` config file (or open the existing one), add `styl
   ],
   "rules": {
     "images/broken": true,
-    "images/prefer-data-uri": 256,
+    "images/prefer-data-uri-min": 20,
+    "images/prefer-data-uri-max": 256,
     ...
   }
 }
