@@ -1,6 +1,6 @@
 {
   "name": "stylelint-images-hanzo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of rules to check images for stylelint, include local images",
   "main": "build/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "stylelint-plugin",
     "stylelint"
   ],
-  "author": "",
+  "author": "bethon",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fXy-during/stylelint-images/issues"
