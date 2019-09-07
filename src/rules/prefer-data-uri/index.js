@@ -6,12 +6,28 @@ import {
   getImageAndLocal
 } from '../../utils';
 
-export const ruleName = namespace('prefer-data-uri');
-export const messages = utils.ruleMessages(ruleName, {
-  expected: imageURL => `Expected image "${imageURL}" to be as data-URI.`
-});
+// export const ruleName = namespace('prefer-data-uri-max');
 
-export default function ruleDataURI(limitBytes) {
+let ruleName = '';
+
+export const messagesMin = utils.ruleMessages(
+  namespace('prefer-data-uri-min'),
+  {
+    expected: imageURL => `Expected image "${imageURL}" to be as data-URI.`
+  }
+);
+
+export const messagesMax = utils.ruleMessages(
+  namespace('prefer-data-uri-max'),
+  {
+    expected: imageURL =>
+      `Unexpected image "${imageURL}" size, too big to upload.`
+  }
+);
+
+
+export default function ruleDataURI(limitBytes, type) {
+  ruleName = namespace('prefer-data-uri-' + type);
   return (root, result) => {
     const validOptions = utils.validateOptions(result, ruleName, {
       actual: limitBytes,
@@ -25,7 +41,7 @@ export default function ruleDataURI(limitBytes) {
     const list = generateListOfImagesURLsAndNodes(root);
 
     return checkImagesSizes(list, result).then(results =>
-      reportImagesWithSizeGreaterThan(results, result, limitBytes)
+      reportImagesWithSizeGreaterThan(results, result, limitBytes, type)
     );
   };
 }
@@ -36,7 +52,7 @@ function checkImagesSizes(list) {
   return Promise.all(checkList);
 }
 
-function getImageAndSize(listItem) {  
+function getImageAndSize(listItem) {
   return getImageAndLocal(listItem)
     .then(response => {
       return {
@@ -47,17 +63,25 @@ function getImageAndSize(listItem) {
     .catch(() => {});
 }
 
-function reportImagesWithSizeGreaterThan(results, result, limitBytes) {
+function reportImagesWithSizeGreaterThan(results, result, limitBytes, type) {
   results
     .filter(resultItem => !!resultItem)
     .forEach(({ node, url, bytesSize }) => {
-      if (bytesSize < limitBytes) {
-        utils.report({
-          message: messages.expected(url),
-          node,
-          result,
-          ruleName
-        });
+      let reportObj = {};
+      if (type == 'max') {
+        if (bytesSize > limitBytes) {
+          reportObj = {
+            message: messagesMax.expected(url)
+          };
+        }
+      } else if (type == 'min') {
+        if (bytesSize < limitBytes) {
+          reportObj = {
+            message: messagesMin.expected(url)
+          };
+        }
       }
+      reportObj.message &&
+        utils.report(Object.assign({}, reportObj, { node, result, ruleName }));
     });
 }

@@ -61,10 +61,10 @@ function generateItems(node, valuePattern, filePath) {
   return typeNode;
 }
 
+// 剔除已经inline的图片
 function getURLs(node, valuePattern) {
   const URLs = node.value.replace(valuePattern, '$2');
   const splitURLs = URLs.split(',').map(url => url.trim());
-
   return splitURLs;
 }
 

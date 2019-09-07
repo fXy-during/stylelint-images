@@ -1,6 +1,6 @@
 {
   "name": "stylelint-images-hanzo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of rules to check images for stylelint, include local images",
   "main": "build/index.js",
   "scripts": {
