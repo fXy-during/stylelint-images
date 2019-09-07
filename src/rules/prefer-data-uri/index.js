@@ -21,7 +21,7 @@ export const messagesMax = utils.ruleMessages(
   namespace('prefer-data-uri-max'),
   {
     expected: imageURL =>
-      `Unexpected image "${imageURL}" size, too big to upload.`
+      `Unexpected image "${imageURL}" size, too large to upload.`
   }
 );
 
