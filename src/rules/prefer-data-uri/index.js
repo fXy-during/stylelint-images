@@ -1,6 +1,10 @@
 import { utils } from 'stylelint';
 import { isNumber } from 'lodash';
-import { namespace, generateListOfImagesURLsAndNodes, getImage } from '../../utils';
+import {
+  namespace,
+  generateListOfImagesURLsAndNodes,
+  getImageAndLocal
+} from '../../utils';
 
 export const ruleName = namespace('prefer-data-uri');
 export const messages = utils.ruleMessages(ruleName, {
@@ -33,22 +37,31 @@ function checkImagesSizes(list) {
 }
 
 function getImageAndSize(listItem) {
-  return getImage(listItem.url)
-    .then(response => ({
-      ...listItem,
-      bytesSize: response.data.length
-    }))
+  console.log("getImageAndSize");
+  
+  return getImageAndLocal(listItem)
+    .then(response => {
+      console.log('response', response.data.length);
+      return {
+        ...listItem,
+        bytesSize: response.data.length
+      };
+    })
     .catch(() => {});
 }
 
 function reportImagesWithSizeGreaterThan(results, result, limitBytes) {
-  results.filter(resultItem => !!resultItem).forEach(({
-    node,
-    url,
-    bytesSize
-  }) => {
-    if (bytesSize < limitBytes) {
-      utils.report({ message: messages.expected(url), node, result, ruleName });
-    }
-  });
+  results
+    .filter(resultItem => !!resultItem)
+    .forEach(({ node, url, bytesSize }) => {
+      console.log('bytesSize', bytesSize);
+      if (bytesSize < limitBytes) {
+        utils.report({
+          message: messages.expected(url),
+          node,
+          result,
+          ruleName
+        });
+      }
+    });
 }

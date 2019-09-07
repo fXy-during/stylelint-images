@@ -7,11 +7,13 @@ A collection of rules to check images for [stylelint](https://github.com/styleli
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-  - [List of rules](#list-of-rules)
-- [Contribute](#contribute)
-- [License](#license)
+- [stylelint-images](#stylelint-images)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [List of rules](#list-of-rules)
+  - [Contribute](#contribute)
+  - [License](#license)
 
 ## Installation
 
@@ -57,10 +59,14 @@ Please refer to [stylelint docs](http://stylelint.io/user-guide/) for the detail
 
 ## Contribute
 
-Feel free to dive in! [Open an issue](https://github.com/ramasilveyra/stylelint-images/issues/new) or submit PRs.
+Feel free to dive in! [Open an issue](https://github.com/fXy-during/stylelint-images/issues/new) or submit PRs.
 
 stylelint-images follows the [Contributor Covenant](https://contributor-covenant.org/version/1/4/) Code of Conduct.
 
 ## License
 
 stylelint-images is [MIT licensed](./LICENSE.md).
+
+
+**仓库fork至https://github.com/ramasilveyra/stylelint-images**
+增加可以扫描本地图片的功能

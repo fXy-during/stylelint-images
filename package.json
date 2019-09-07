@@ -1,7 +1,7 @@
 {
-  "name": "stylelint-images",
-  "version": "2.0.0",
-  "description": "A collection of rules to check images for stylelint",
+  "name": "stylelint-images-hanzo",
+  "version": "1.0.0",
+  "description": "A collection of rules to check images for stylelint, include local images",
   "main": "build/index.js",
   "scripts": {
     "prepublish": "npm run build",
@@ -13,18 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ramasilveyra/stylelint-images.git"
+    "url": "git+https://github.com/fXy-during/stylelint-images"
   },
   "keywords": [
     "stylelint-plugin",
     "stylelint"
   ],
-  "author": "Ramiro Silveyra d'Avila (@ramasilveyra)",
+  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ramasilveyra/stylelint-images/issues"
+    "url": "https://github.com/fXy-during/stylelint-images/issues"
   },
-  "homepage": "https://github.com/ramasilveyra/stylelint-images#readme",
+  "homepage": "https://github.com/fXy-during/stylelint-images#readme",
   "dependencies": {
     "axios": "0.16.1",
     "lodash": "^4.17.4"
