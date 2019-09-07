@@ -36,12 +36,9 @@ function checkImagesSizes(list) {
   return Promise.all(checkList);
 }
 
-function getImageAndSize(listItem) {
-  console.log("getImageAndSize");
-  
+function getImageAndSize(listItem) {  
   return getImageAndLocal(listItem)
     .then(response => {
-      console.log('response', response.data.length);
       return {
         ...listItem,
         bytesSize: response.data.length
@@ -54,7 +51,6 @@ function reportImagesWithSizeGreaterThan(results, result, limitBytes) {
   results
     .filter(resultItem => !!resultItem)
     .forEach(({ node, url, bytesSize }) => {
-      console.log('bytesSize', bytesSize);
       if (bytesSize < limitBytes) {
         utils.report({
           message: messages.expected(url),
